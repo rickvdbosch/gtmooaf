@@ -6,19 +6,10 @@ using Microsoft.Extensions.Logging;
 
 using Gtmooaf.Models;
 
-namespace Gtmooaf
+namespace Gtmooaf.TriggersBindings
 {
-    public static class HttpTriggerReturnBinding
+    public static class ReturnBinding
     {
-        [FunctionName(nameof(HttpTriggerReturnBinding))]
-        [return: Blob("data/{sys.randguid}.txt", Connection = "scs")]
-        public static string Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] SomeCustomModel model,
-            ILogger log)
-        {
-            return $"{model.Name} posted their info, if I'm not mistaking their age is currently '{CalculateAge(model.DateOfBirth)} years'.";
-        }
-
         #region Private method
 
         private static int CalculateAge(DateTime birthDate)
@@ -33,5 +24,14 @@ namespace Gtmooaf
         }
 
         #endregion
+
+        [FunctionName(nameof(ReturnBinding))]
+        [return: Blob("data/{sys.randguid}.txt", Connection = "scs")]
+        public static string Run(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] SomeCustomModel model,
+            ILogger log)
+        {
+            return $"{model.Name} posted their info, if I'm not mistaking their age is currently '{CalculateAge(model.DateOfBirth)} years'.";
+        }
     }
 }
