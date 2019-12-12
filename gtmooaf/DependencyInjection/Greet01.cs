@@ -14,6 +14,7 @@ namespace Gtmooaf.DependencyInjection
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] SomeCustomModel model,
             ILogger log)
         {
+            // New is Glue!!!
             var greeterService = new GreeterService();
             return greeterService.Greet(model.Name);
         }
