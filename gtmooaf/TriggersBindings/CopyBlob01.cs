@@ -12,7 +12,7 @@ namespace Gtmooaf.TriggersBindings
     {
         [FunctionName(nameof(CopyBlob01))]
         public static async Task Run(
-            [BlobTrigger("upload/{name}/{name}", Connection = "scs")] Stream addedBlob, 
+            [BlobTrigger("upload/{name}", Connection = "scs")] Stream addedBlob, 
             string name, ILogger log)
         {
             // The below code is the 'old-fashioned' way of uploading a file to storage:
