@@ -5,3 +5,4 @@ This repository holds the sample code of my talk "Getting the most out of Azure 
 * Triggers & Bindings
 * Dependency Injection
 * Managed Identities
+* Security
