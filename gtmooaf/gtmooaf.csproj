@@ -6,9 +6,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.0.0" />
     <PackageReference Include="Microsoft.Azure.KeyVault" Version="3.0.4" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="4.0.0" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="4.1.0" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.0.10" />
-    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.1" />
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.2" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.0" />
   </ItemGroup>
   <ItemGroup>
