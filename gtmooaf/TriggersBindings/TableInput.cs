@@ -14,7 +14,8 @@ namespace Gtmooaf.TriggersBindings
         [FunctionName(nameof(TableInput))]
         public static async Task Run(
             [QueueTrigger("trigger", Connection = "scs")] string message,
-            [Table(nameof(Tent))] CloudTable table)
+            [Table(nameof(Tent))] CloudTable table,
+            ILogger log)
         {
             var entities = await GetEntitiesFromTable(table);
 
