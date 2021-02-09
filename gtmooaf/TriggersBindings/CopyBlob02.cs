@@ -9,6 +9,7 @@ namespace Gtmooaf.TriggersBindings
     public static class CopyBlob02
     {
         [FunctionName(nameof(CopyBlob02))]
+        [ExponentialBackoffRetry(5, "00:00:04", "00:15:00")]
         public static async Task Run(
             [BlobTrigger("upload/{name}", Connection = "scs")] Stream addedBlob,
             [Blob("copied/{name}", FileAccess.Write, Connection = "scs")] Stream stream,

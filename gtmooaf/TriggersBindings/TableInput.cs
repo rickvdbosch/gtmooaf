@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
-using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.Azure.Cosmos.Table;
 
 using Gtmooaf.Models;
 
@@ -13,7 +13,7 @@ namespace Gtmooaf.TriggersBindings
     {
         [FunctionName(nameof(TableInput))]
         public static async Task Run(
-            [QueueTrigger("trigger", Connection = "scs")] string message,
+            [QueueTrigger("%QUEUENAME%", Connection = "scs")] string message,
             [Table(nameof(Tent))] CloudTable table,
             ILogger log)
         {
@@ -32,7 +32,7 @@ namespace Gtmooaf.TriggersBindings
         {
             TableQuerySegment<Tent> querySegment = null;
             var entities = new List<Tent>();
-            var query = new TableQuery<Tent>().Where(TableQuery.GenerateFilterCondition(nameof(ITableEntity.PartitionKey), QueryComparisons.Equal, "azurelowlands"));
+            var query = new TableQuery<Tent>().Where(TableQuery.GenerateFilterCondition(nameof(ITableEntity.PartitionKey), QueryComparisons.Equal, "updateNOW"));
 
             do
             {

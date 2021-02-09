@@ -1,14 +1,14 @@
-﻿using System;
-using Microsoft.WindowsAzure.Storage.Table;
+﻿using Microsoft.Azure.Cosmos.Table;
 
 namespace Gtmooaf.Models
 {
     public class Tent : TableEntity
     {
-        #region
+        #region Constructor
 
-        public Tent() : base("azurelowlands", DateTime.Now.ToString("yyyyMMddHHmm"))
+        public Tent()
         {
+            PartitionKey = "betatalksLIVE-20201209";
         }
 
         #endregion
@@ -16,5 +16,7 @@ namespace Gtmooaf.Models
         public int Id { get; set; }
 
         public string Name { get; set; }
+
+        public string Description { get; set; }
     }
 }

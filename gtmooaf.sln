@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29521.150
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gtmooaf", "gtmooaf\Gtmooaf.csproj", "{66C21F5B-59D1-4C09-9DD7-1BE52A10A9A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableStorageSeeder", "TableStorageSeeder\TableStorageSeeder.csproj", "{D128EE58-9FF1-452C-B30C-34365DED53A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TableStorageSeeder", "TableStorageSeeder\TableStorageSeeder.csproj", "{D128EE58-9FF1-452C-B30C-34365DED53A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

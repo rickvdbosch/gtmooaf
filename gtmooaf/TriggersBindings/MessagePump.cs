@@ -19,7 +19,8 @@ namespace Gtmooaf.TriggersBindings
         [FunctionName(nameof(MessagePump))]
         public static async Task Run(
             [BlobTrigger("upload/{name}", Connection = "scs")] Stream addedBlob,
-            [ServiceBus("process", Connection = "sbcs", EntityType = EntityType.Queue)] ICollector<string> queueCollector,
+            [ServiceBus("process", Connection = "sbcs", EntityType = EntityType.Queue)]
+                ICollector<string> queueCollector,
             ILogger log)
         {
             using (var reader = new StreamReader(addedBlob))

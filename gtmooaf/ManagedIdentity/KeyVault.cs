@@ -1,13 +1,13 @@
 using System;
 using System.Threading.Tasks;
-
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Microsoft.Azure.Services.AppAuthentication;
-using Microsoft.Azure.KeyVault;
 
 namespace Gtmooaf.ManagedIdentity
 {
@@ -16,10 +16,10 @@ namespace Gtmooaf.ManagedIdentity
         #region Constants
 
         // Name of the secret to get from Key Vault
-        private const string SECRET_NAME = "<YOUR_SECRET'S_NAME>";
+        private const string SECRET_NAME = "Secret1";
 
         // The URL to the Key Vault to get the secret from
-        private const string VAULT_URL = "https://<YOUR_VAULT'S_NAME>.vault.azure.net/";
+        private const string VAULT_URL = "https://gtmooaf-kv.vault.azure.net/";
 
         #endregion
 
@@ -29,9 +29,9 @@ namespace Gtmooaf.ManagedIdentity
             ILogger log)
         {
             var tokenProvider = new AzureServiceTokenProvider();
-            using var kvc = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(tokenProvider.KeyVaultTokenCallback));
+            var kvc = new SecretClient(new Uri(VAULT_URL), new ManagedIdentityCredential());
 
-            var secret = await kvc.GetSecretAsync(VAULT_URL, SECRET_NAME);
+            var secret = await kvc.GetSecretAsync(SECRET_NAME);
             Console.WriteLine($"The value of the secret we got from Key Vault: {secret.Value}");
 
             return new OkObjectResult(secret.Value);
