@@ -17,10 +17,7 @@ namespace Gtmooaf.DependencyInjection
 
         #region Constructors
 
-        public Greet02(IGreeterService greeterService)
-        {
-            _greeterService = greeterService;
-        }
+        public Greet02(IGreeterService greeterService) => _greeterService = greeterService;
 
         #endregion
 

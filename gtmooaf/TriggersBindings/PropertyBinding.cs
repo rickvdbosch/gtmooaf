@@ -20,7 +20,7 @@ namespace Gtmooaf.TriggersBindings
         {
             using var writer = new StreamWriter(stream);
             await writer.WriteLineAsync($"Name:\t{model.Name}");
-            await writer.WriteLineAsync($"DoB:\t{model.DateOfBirth.ToString("dd-MM-yyyy")}");
+            await writer.WriteLineAsync($"DoB:\t{model.DateOfBirth:dd-MM-yyyy}");
 
             return new OkResult();
         }

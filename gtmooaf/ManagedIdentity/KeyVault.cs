@@ -1,10 +1,11 @@
 using System;
 using System.Threading.Tasks;
+
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
@@ -28,7 +29,6 @@ namespace Gtmooaf.ManagedIdentity
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
-            var tokenProvider = new AzureServiceTokenProvider();
             var kvc = new SecretClient(new Uri(VAULT_URL), new ManagedIdentityCredential());
 
             var secret = await kvc.GetSecretAsync(SECRET_NAME);

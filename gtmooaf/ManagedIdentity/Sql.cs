@@ -1,12 +1,14 @@
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 
+using Azure.Identity;
+using Azure.Core;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Microsoft.Azure.Services.AppAuthentication;
 
 namespace Gtmooaf.ManagedIdentity
 {
@@ -23,13 +25,13 @@ namespace Gtmooaf.ManagedIdentity
 
         [FunctionName(nameof(Sql))]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
             using var connection = new SqlConnection(CONNECTIONSTRING);
             using var command = new SqlCommand(QUERY, connection);
 
-            connection.AccessToken = await new AzureServiceTokenProvider().GetAccessTokenAsync("https://database.windows.net/");
+            connection.AccessToken = (await new ManagedIdentityCredential().GetTokenAsync(new TokenRequestContext(new[] { "https://database.windows.net/" }))).Token;
             await connection.OpenAsync();
             var result = (await command.ExecuteScalarAsync()).ToString();
 

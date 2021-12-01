@@ -11,7 +11,6 @@ namespace Gtmooaf.TriggersBindings
     public static class CopyBlob01
     {
         [FunctionName(nameof(CopyBlob01))]
-        [FixedDelayRetry(5, "00:00:10")]
         public static async Task Run(
             [BlobTrigger("upload/{name}", Connection = "scs")] Stream addedBlob, 
             string name, ILogger log)
