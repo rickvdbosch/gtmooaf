@@ -29,7 +29,7 @@ namespace Gtmooaf.ManagedIdentity
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
-            var kvc = new SecretClient(new Uri(VAULT_URL), new ManagedIdentityCredential());
+            var kvc = new SecretClient(new Uri(VAULT_URL), new DefaultAzureCredential());
 
             var secret = await kvc.GetSecretAsync(SECRET_NAME);
             Console.WriteLine($"The value of the secret we got from Key Vault: {secret.Value}");

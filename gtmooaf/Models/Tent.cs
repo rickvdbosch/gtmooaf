@@ -6,7 +6,7 @@ namespace Gtmooaf.Models
     {
         #region Constructor
 
-        public Tent() => PartitionKey = "betatalksLIVE-20201209";
+        public Tent() => PartitionKey = "RHH-20211213";
 
         #endregion
 

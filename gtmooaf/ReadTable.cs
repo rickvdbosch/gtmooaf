@@ -18,7 +18,7 @@ namespace Gtmooaf
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "entities")] HttpRequest request,
             [Table(nameof(Tent))] CloudTable cloudTable)
         {
-            var entities = await GetEntitiesFromTable<Tent>(cloudTable, "betatalksLIVE-20201209");
+            var entities = await GetEntitiesFromTable<Tent>(cloudTable, "RHH-20211213");
             return new OkObjectResult(entities);
         }
 

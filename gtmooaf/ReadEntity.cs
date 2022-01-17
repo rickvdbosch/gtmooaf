@@ -12,7 +12,7 @@ namespace Gtmooaf
         [FunctionName("ReadEntity")]
         public static IActionResult Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "entities/{id}")] HttpRequest request,
-            [Table(nameof(Tent), "betatalksLIVE-20201209", "{id}")] Tent entity)
+            [Table(nameof(Tent), "RHH-20211213", "{id}")] Tent entity)
         {
             return new OkObjectResult(entity);
         }
