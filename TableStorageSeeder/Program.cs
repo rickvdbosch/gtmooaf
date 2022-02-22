@@ -19,7 +19,7 @@ namespace TableStorageSeeder
             for (int i = 0; i < 250; i++)
             {
                 var entity = new Tent { 
-                    RowKey = $"20211213{rnd.Next(0, 1000):000}", 
+                    RowKey = $"{DateTime.Now:yyyyMMddHHmmssfff}{rnd.Next(0, 1000):000}", 
                     Name = $"This is item nr. {i + 1}",
                     Id = i
                 };
